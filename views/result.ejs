@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SignFinder</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+    <div class="query">
+      <fieldset>
+        <form action="/findsigns" method="get">
+          <input name="lat" type="text" class="ghost-input" placeholder="Enter Latitude" required>
+          <input name="lon" type="text" class="ghost-input" placeholder="Enter Longitude" required>
+          <input name="rad" type="number" class="ghost-input" placeholder="Enter Radius" required>
+          <input type="submit" class="ghost-button" value="Find Signs">
+        </form>
+        <% if(resultSigns !== null) { %>
+          <% if(resultSigns.length > 0) { %>
+          <p> <%= resultSigns.length %> sign(s) found in this area </p>
+            <table style="width:100%">
+              <% for (var i = 0; i < resultSigns.length; i++) { %>
+              <tr>
+                <td><%= resultSigns[i] %></td>
+              </tr>
+              <% } %>
+            </table>
+          <% } else { %>
+            <p> No Signs Found in this area </p>
+          <% } %>
+        <% } %>
+        
+        <% if(error !== null){ %>
+          <p><%= error %></p>
+        <% } %>
+      </fieldset>
+    </div>
+  </body>
+</html>
